@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
 import Home from './pages/Home'
 import CollectionPage from './pages/CollectionPage'
+import ProductPage from './pages/ProductPage'
 import { earrings, rings } from './data'
 import './App.css'
 
@@ -18,6 +19,7 @@ function App() {
               eyebrow="22K · Weight in grams"
               lead="Sample 22 karat rings in the style of Tanishq listings — karat, net gold weight, and size. Final price follows the day’s gold rate plus making charges."
               items={rings}
+              path="/rings"
             />
           }
         />
@@ -29,6 +31,17 @@ function App() {
               eyebrow="22K · Weight in grams"
               lead="Retail earrings available in store. Price follows the day’s gold rate plus making charges."
               items={earrings}
+              path="/earrings"
+            />
+          }
+        />
+        <Route
+          path="/earrings/:slug"
+          element={
+            <ProductPage
+              items={earrings}
+              collectionTitle="Gold earrings"
+              collectionPath="/earrings"
             />
           }
         />

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import ProductQr from '../ProductQr'
 
-function CollectionPage({ title, eyebrow, lead, items }) {
+function CollectionPage({ title, eyebrow, lead, items, path }) {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [title])
@@ -22,15 +23,29 @@ function CollectionPage({ title, eyebrow, lead, items }) {
         <div className="grid product-grid">
           {items.map((item) => (
             <article className="card product" key={item.name}>
-              <img
-                className={
-                  item.image.startsWith('/images/')
-                    ? 'catalog-photo'
-                    : undefined
-                }
-                src={item.image}
-                alt={item.name}
-              />
+              {item.slug ? (
+                <Link to={`${path}/${item.slug}`}>
+                  <img
+                    className={
+                      item.image.startsWith('/images/')
+                        ? 'catalog-photo'
+                        : undefined
+                    }
+                    src={item.image}
+                    alt={item.name}
+                  />
+                </Link>
+              ) : (
+                <img
+                  className={
+                    item.image.startsWith('/images/')
+                      ? 'catalog-photo'
+                      : undefined
+                  }
+                  src={item.image}
+                  alt={item.name}
+                />
+              )}
               <div className="card-body">
                 <h3>{item.name}</h3>
                 <ul className="specs">
@@ -48,6 +63,7 @@ function CollectionPage({ title, eyebrow, lead, items }) {
                   </li>
                 </ul>
                 <p>{item.note}</p>
+                {item.slug ? <ProductQr item={item} /> : null}
               </div>
             </article>
           ))}

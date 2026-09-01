@@ -105,9 +105,12 @@ export const rings = [
   },
 ]
 
+export const siteUrl = 'https://sethia-jewellery.vercel.app'
+
 export const earrings = [
   {
     name: 'Gold Daily Wear Earring',
+    slug: 'gold-daily-wear-earring',
     note: 'Floral 22 karat yellow gold earring with a polished drop, made for everyday wear.',
     karat: '22K',
     weight: '2.5 g',

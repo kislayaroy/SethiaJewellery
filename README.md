@@ -1,4 +1,4 @@
-# Aurelia — jewellery website
+# Sethia Jewellers
 
 Baseline React app for a jewellery storefront, ready to host on [Vercel](https://vercel.com).
 

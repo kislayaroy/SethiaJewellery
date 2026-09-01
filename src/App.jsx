@@ -24,6 +24,7 @@ const collections = [
     note: 'Solitaires, bands, and everyday gold rings.',
     image:
       'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80',
+    href: '#rings',
   },
   {
     name: 'Necklaces',
@@ -57,6 +58,54 @@ const retailPieces = [
   },
 ]
 
+const rings = [
+  {
+    name: 'Traditional Floral Ring',
+    note: '22 karat yellow gold with a classic flower motif, made for festive and daily wear.',
+    karat: '22K',
+    weight: '3.887 g',
+    size: '16.40 mm',
+    image:
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    name: 'Leaf Vine Finger Ring',
+    note: 'Lightweight 22 karat ring with a leaf pattern, suited to everyday office wear.',
+    karat: '22K',
+    weight: '1.342 g',
+    size: '16.40 mm',
+    image:
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    name: 'Infinity Knot Ring',
+    note: 'Compact knotted design in 22 karat yellow gold for understated daily elegance.',
+    karat: '22K',
+    weight: '2.670 g',
+    size: '16.40 mm',
+    image:
+      'https://images.unsplash.com/photo-1603561596112-0a132b757442?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    name: 'Classic Men’s Band',
+    note: 'Heavier 22 karat yellow gold band with a glossy finish, sized for men.',
+    karat: '22K',
+    weight: '5.332 g',
+    size: '18.80 mm',
+    image:
+      'https://images.unsplash.com/photo-1543294001-f7cd5d7fb516?auto=format&fit=crop&w=900&q=80',
+  },
+  {
+    name: 'Polished Daily Wear Ring',
+    note: 'Simple 22 karat yellow gold ring with a clean profile for regular wear.',
+    karat: '22K',
+    weight: '2.512 g',
+    size: '16.40 mm',
+    image:
+      'https://images.unsplash.com/photo-1589674781759-c21c37956a44?auto=format&fit=crop&w=900&q=80',
+  },
+]
+
 function App() {
   return (
     <div className="page">
@@ -69,6 +118,9 @@ function App() {
           <ul className="nav-links">
             <li>
               <a href="#collections">Collections</a>
+            </li>
+            <li>
+              <a href="#rings">Rings</a>
             </li>
             <li>
               <a href="#retail">Retail</a>
@@ -111,11 +163,60 @@ function App() {
             <p className="eyebrow">Gold · Diamond · Bridal</p>
           </div>
           <div className="grid">
-            {collections.map((item) => (
-              <article className="card" key={item.name}>
+            {collections.map((item) => {
+              const inner = (
+                <>
+                  <img src={item.image} alt={item.name} />
+                  <div className="card-body">
+                    <h3>{item.name}</h3>
+                    <p>{item.note}</p>
+                  </div>
+                </>
+              )
+
+              return item.href ? (
+                <a className="card card-link" href={item.href} key={item.name}>
+                  {inner}
+                </a>
+              ) : (
+                <article className="card" key={item.name}>
+                  {inner}
+                </article>
+              )
+            })}
+          </div>
+        </section>
+
+        <section className="section rings" id="rings">
+          <div className="section-head">
+            <h2>Gold rings</h2>
+            <p className="eyebrow">22K · Weight in grams</p>
+          </div>
+          <p className="section-lead">
+            Sample 22 karat rings in the style of Tanishq listings — karat,
+            net gold weight, and size. Final price follows the day’s gold rate
+            plus making charges.
+          </p>
+          <div className="grid product-grid">
+            {rings.map((item) => (
+              <article className="card product" key={item.name}>
                 <img src={item.image} alt={item.name} />
                 <div className="card-body">
                   <h3>{item.name}</h3>
+                  <ul className="specs">
+                    <li>
+                      <span>Purity</span>
+                      <strong>{item.karat}</strong>
+                    </li>
+                    <li>
+                      <span>Gold weight</span>
+                      <strong>{item.weight}</strong>
+                    </li>
+                    <li>
+                      <span>Size</span>
+                      <strong>{item.size}</strong>
+                    </li>
+                  </ul>
                   <p>{item.note}</p>
                 </div>
               </article>
